@@ -18,7 +18,8 @@
     --mesh-1: #FF9A9E;
     --mesh-2: #FECFEF;
     --mesh-3: #A18CD1;
-    --bg-gradient: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%);
+
+    --orb-opacity: 0.8;
 
     --font-stack: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
     --radius-xl: 32px;
@@ -29,22 +30,23 @@
 @media (prefers-color-scheme: dark) {
     :root {
         /* Dark Mode (Immersive Spatial) */
-        --glass-bg: rgba(20, 20, 20, 0.8);
-        --glass-border: rgba(255, 255, 255, 0.12);
-        --glass-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.4);
+        --glass-bg: rgba(10, 10, 10, 0.8);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --glass-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.6);
         --bg-solid: #000000;
 
         --text-primary: #FFFFFF;
-        --text-secondary: rgba(255, 255, 255, 0.85);
-        --text-tertiary: rgba(255, 255, 255, 0.5);
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-tertiary: rgba(255, 255, 255, 0.4);
 
-        --spotlight-color: rgba(255, 255, 255, 0.2);
+        --spotlight-color: rgba(255, 255, 255, 0.1);
 
-        /* Mesh Gradient Colors (Night) */
-        --mesh-1: #2E3192;
-        --mesh-2: #1BFFFF;
-        --mesh-3: #D4145A;
-        --bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+        /* Deep Dark Mesh (Night) */
+        --mesh-1: #0a0a2a;
+        --mesh-2: #1a0b2e;
+        --mesh-3: #001f3f;
+
+        --orb-opacity: 0.5;
     }
 }
 
@@ -55,7 +57,7 @@
 }
 
 html {
-    background: var(--bg-gradient);
+    background: var(--bg-solid);
     height: 100%;
 }
 
@@ -89,7 +91,7 @@ body {
     border-radius: 50%;
     filter: blur(80px);
     /* The Diffused Light Look */
-    opacity: 0.8;
+    opacity: var(--orb-opacity);
     will-change: transform;
     animation: floatOrb 20s infinite ease-in-out alternate;
 }
