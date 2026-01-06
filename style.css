@@ -18,6 +18,7 @@
     --mesh-1: #FF9A9E;
     --mesh-2: #FECFEF;
     --mesh-3: #A18CD1;
+    --bg-gradient: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%);
 
     --font-stack: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
     --radius-xl: 32px;
@@ -43,6 +44,7 @@
         --mesh-1: #2E3192;
         --mesh-2: #1BFFFF;
         --mesh-3: #D4145A;
+        --bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
     }
 }
 
@@ -53,7 +55,8 @@
 }
 
 html {
-    background: var(--bg-solid);
+    background: var(--bg-gradient);
+    height: 100%;
 }
 
 body {
