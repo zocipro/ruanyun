@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>软云网络 | Soft Cloud Network</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <div id="background-canvas"></div>
+    <div class="noise-overlay"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div id="app">
+        <header class="glass-header">
+            <nav>
+                <div class="logo">Soft Cloud</div>
+                <div class="links">
+                    <a href="#hero" class="active">首页</a>
+                    <a href="#projects">项目</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section id="hero">
+                <div class="hero-content">
+                    <div class="logo-wrapper">
+                        <img src="./ruanyun.png" alt="软云网络 Logo" class="main-logo" />
+                        <div class="logo-glow"></div>
+                    </div>
+                    <h1 class="hero-title">软云网络</h1>
+                    <p class="hero-subtitle">Exploring the Future of Digital & AI</p>
+                    <div class="scroll-indicator">
+                        <span></span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <div class="section-header">
+                    <h2>精选项目</h2>
+                    <div class="line"></div>
+                </div>
+
+                <div class="project-grid">
+                    <a href="https://aitodu.zoci.pro" target="_blank" class="project-card glass-card">
+                        <div class="card-bg"></div>
+                        <div class="card-content">
+                            <div class="card-icon">AI</div>
+                            <h3>AI 事项</h3>
+                            <p>智能待办事项管理，重塑你的效率体验。</p>
+                            <span class="link-arrow">View Project <svg width="20" height="20" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg></span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="project-card glass-card">
+                        <div class="card-bg"></div>
+                        <div class="card-content">
+                            <div class="card-icon">DEV</div>
+                            <h3>更多项目</h3>
+                            <p>敬请期待更多精彩作品...</p>
+                            <span class="link-arrow">Soon...</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 软云网络. Created with Passion.</p>
+        </footer>
+    </div>
+    <script type="module" src="./main.js"></script>
+</body>
+
+</html>
