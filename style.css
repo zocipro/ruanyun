@@ -77,8 +77,9 @@ body {
     border-radius: 50%;
     filter: blur(80px);
     /* The Diffused Light Look */
-    opacity: 0.6;
-    animation: floatOrb 10s infinite ease-in-out;
+    opacity: 0.8;
+    will-change: transform;
+    animation: floatOrb 20s infinite ease-in-out alternate;
 }
 
 .orb-1 {
@@ -87,7 +88,7 @@ body {
     background: var(--mesh-1);
     top: -10%;
     left: -10%;
-    animation-delay: 0s;
+    animation-duration: 24s;
 }
 
 .orb-2 {
@@ -96,7 +97,8 @@ body {
     background: var(--mesh-2);
     top: 40%;
     right: -20%;
-    animation-delay: -2s;
+    animation-duration: 32s;
+    animation-delay: -5s;
 }
 
 .orb-3 {
@@ -105,22 +107,25 @@ body {
     background: var(--mesh-3);
     bottom: -10%;
     left: 20%;
-    animation-delay: -4s;
+    animation-duration: 28s;
+    animation-delay: -10s;
 }
 
 @keyframes floatOrb {
-
-    0%,
-    100% {
+    0% {
         transform: translate(0, 0) scale(1);
     }
 
     33% {
-        transform: translate(30px, -50px) scale(1.1);
+        transform: translate(25vw, 10vh) scale(1.2);
     }
 
     66% {
-        transform: translate(-20px, 20px) scale(0.9);
+        transform: translate(-10vw, 20vh) scale(0.8);
+    }
+
+    100% {
+        transform: translate(15vw, -15vh) scale(1.1);
     }
 }
 
