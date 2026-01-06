@@ -2,16 +2,17 @@
     /* VisionOS Glass Variables */
 
     /* Light Mode (Daytime Spatial) */
-    --glass-bg: rgba(255, 255, 255, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.5);
-    --glass-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.1);
-    --glass-blur: 20px;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.05);
+    --glass-blur: 24px;
+    --bg-solid: #f2f2f7;
 
     --text-primary: #000000;
-    --text-secondary: rgba(60, 60, 67, 0.6);
-    --text-tertiary: rgba(60, 60, 67, 0.3);
+    --text-secondary: rgba(60, 60, 67, 0.8);
+    --text-tertiary: rgba(60, 60, 67, 0.5);
 
-    --spotlight-color: rgba(255, 255, 255, 0.8);
+    --spotlight-color: rgba(255, 255, 255, 0.9);
 
     /* Mesh Gradient Colors (Day) */
     --mesh-1: #FF9A9E;
@@ -27,20 +28,21 @@
 @media (prefers-color-scheme: dark) {
     :root {
         /* Dark Mode (Immersive Spatial) */
-        --glass-bg: rgba(30, 30, 30, 0.6);
-        --glass-border: rgba(255, 255, 255, 0.15);
-        --glass-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.3);
+        --glass-bg: rgba(20, 20, 20, 0.8);
+        --glass-border: rgba(255, 255, 255, 0.12);
+        --glass-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.4);
+        --bg-solid: #000000;
 
         --text-primary: #FFFFFF;
-        --text-secondary: rgba(235, 235, 245, 0.6);
-        --text-tertiary: rgba(235, 235, 245, 0.3);
+        --text-secondary: rgba(255, 255, 255, 0.85);
+        --text-tertiary: rgba(255, 255, 255, 0.5);
 
-        --spotlight-color: rgba(255, 255, 255, 0.15);
+        --spotlight-color: rgba(255, 255, 255, 0.2);
 
         /* Mesh Gradient Colors (Night) */
-        --mesh-1: #4facfe;
-        --mesh-2: #00f2fe;
-        --mesh-3: #8e2de2;
+        --mesh-1: #2E3192;
+        --mesh-2: #1BFFFF;
+        --mesh-3: #D4145A;
     }
 }
 
@@ -55,7 +57,7 @@ body {
     color: var(--text-primary);
     min-height: 100vh;
     overflow-x: hidden;
-    background: #000;
+    background: var(--bg-solid);
     /* Fallback */
 }
 
