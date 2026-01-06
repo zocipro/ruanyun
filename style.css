@@ -52,13 +52,21 @@
     padding: 0;
 }
 
+html {
+    background: var(--bg-solid);
+}
+
 body {
     font-family: var(--font-stack);
     color: var(--text-primary);
     min-height: 100vh;
+    min-height: 100dvh;
+    /* Mobile viewport fix */
     overflow-x: hidden;
     background: var(--bg-solid);
     /* Fallback */
+    padding-bottom: env(safe-area-inset-bottom);
+    /* Safe area for home indicator */
 }
 
 /* --- Living Mesh Background --- */
