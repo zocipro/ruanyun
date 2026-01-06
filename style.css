@@ -1,20 +1,46 @@
 :root {
-    --bg: #F0F2F5;
-    --text: #111;
-    --obj-bg: #FFFFFF;
-    --obj-border: #E5E5E5;
-    --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    /* VisionOS Glass Variables */
 
-    --font-main: 'Inter', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    /* Light Mode (Daytime Spatial) */
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.1);
+    --glass-blur: 20px;
+
+    --text-primary: #000000;
+    --text-secondary: rgba(60, 60, 67, 0.6);
+    --text-tertiary: rgba(60, 60, 67, 0.3);
+
+    --spotlight-color: rgba(255, 255, 255, 0.8);
+
+    /* Mesh Gradient Colors (Day) */
+    --mesh-1: #FF9A9E;
+    --mesh-2: #FECFEF;
+    --mesh-3: #A18CD1;
+
+    --font-stack: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
+    --radius-xl: 32px;
+    --radius-lg: 20px;
+    --radius-md: 12px;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --bg: #0A0A0A;
-        --text: #FFF;
-        --obj-bg: #1A1A1A;
-        --obj-border: #333;
+        /* Dark Mode (Immersive Spatial) */
+        --glass-bg: rgba(30, 30, 30, 0.6);
+        --glass-border: rgba(255, 255, 255, 0.15);
+        --glass-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.3);
+
+        --text-primary: #FFFFFF;
+        --text-secondary: rgba(235, 235, 245, 0.6);
+        --text-tertiary: rgba(235, 235, 245, 0.3);
+
+        --spotlight-color: rgba(255, 255, 255, 0.15);
+
+        /* Mesh Gradient Colors (Night) */
+        --mesh-1: #4facfe;
+        --mesh-2: #00f2fe;
+        --mesh-3: #8e2de2;
     }
 }
 
@@ -25,146 +51,436 @@
 }
 
 body {
-    background-color: var(--bg);
-    font-family: var(--font-main);
+    font-family: var(--font-stack);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #000;
+    /* Fallback */
+}
+
+/* --- Living Mesh Background --- */
+.mesh-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--bg-void, #f2f2f7);
+    /* Default solid fallback */
     overflow: hidden;
-    /* Critical for physics world */
-    height: 100vh;
-    width: 100vw;
-    cursor: grab;
-    user-select: none;
-    -webkit-user-select: none;
 }
 
-body:active {
-    cursor: grabbing;
-}
-
-/* Background Hint */
-.background-hint {
+/* The Orbs */
+.mesh-orb {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    border-radius: 50%;
+    filter: blur(80px);
+    /* The Diffused Light Look */
+    opacity: 0.6;
+    animation: floatOrb 10s infinite ease-in-out;
+}
+
+.orb-1 {
+    width: 60vw;
+    height: 60vw;
+    background: var(--mesh-1);
+    top: -10%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 50vw;
+    height: 50vw;
+    background: var(--mesh-2);
+    top: 40%;
+    right: -20%;
+    animation-delay: -2s;
+}
+
+.orb-3 {
+    width: 40vw;
+    height: 40vw;
+    background: var(--mesh-3);
+    bottom: -10%;
+    left: 20%;
+    animation-delay: -4s;
+}
+
+@keyframes floatOrb {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
+
+.mesh-overlay {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(60px);
+    /* Smooth out everything into gradients */
+    background: rgba(255, 255, 255, 0.05);
+    /* Slight tint */
+}
+
+
+/* --- Layout --- */
+.app-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Navigation (Glass Bar) --- */
+.glass-nav {
+    position: sticky;
+    top: 24px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.nav-content {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    padding: 8px 24px 8px 8px;
+    border-radius: 99px;
+    /* Pill */
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.glass-nav:hover .nav-content {
+    transform: translateY(2px) scale(1.02);
+}
+
+.lens-logo-wrapper {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    padding: 4px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.nav-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.lens-flare {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), transparent 50%);
+    opacity: 0.5;
+    border-radius: 50%;
     pointer-events: none;
-    opacity: 0.1;
-    z-index: 0;
 }
 
-.bg-title {
-    font-size: 12vw;
-    font-weight: 800;
-    white-space: nowrap;
-    letter-spacing: -0.05em;
-    color: var(--text);
+.brand-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
 }
 
-.background-hint p {
-    font-family: var(--font-mono);
+/* --- Hero --- */
+.hero-section {
+    text-align: center;
+    padding: 80px 0 100px;
+    animation: heroIn 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes heroIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--text-primary) 30%, var(--text-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.glass-btn {
+    text-decoration: none;
+    font-weight: 600;
     font-size: 1rem;
-    color: var(--text);
-    margin-top: -1vw;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: 99px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
 }
 
-/* Physics Objects Common */
-.phys-obj {
+.glass-btn.primary {
+    background: var(--text-primary);
+    color: var(--bg, #fff);
+    border: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .glass-btn.primary {
+        color: #000;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .glass-btn.primary {
+        color: #fff;
+    }
+}
+
+
+.glass-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.btn-shine {
     position: absolute;
-    /* Controlled by JS */
-    background: var(--obj-bg);
-    border: 2px solid var(--text);
-    /* Neo-Brutalism Touch */
-    color: var(--text);
-    box-shadow: var(--shadow);
-    z-index: 10;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-20deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+
+    20% {
+        left: 200%;
+    }
+
+    100% {
+        left: 200%;
+    }
+}
+
+/* --- Grid & Cards (Spotlight) --- */
+.grid-section {
+    padding-bottom: 80px;
+}
+
+.grid-header {
+    margin-bottom: 32px;
+    padding-left: 8px;
+}
+
+.grid-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+/* The Magic Spotlight Card */
+.glass-card {
+    position: relative;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    /* VisionOS Frost */
+    border-radius: var(--radius-xl);
+    border: 1px solid transparent;
+    /* Border handled by mask */
+    box-shadow: var(--glass-shadow);
+    text-decoration: none;
+    color: var(--text-primary);
+    overflow: hidden;
+    transition: transform 0.3s;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Spotlight Border Logic using ::before */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-xl);
+    padding: 1.5px;
+    /* Border thickness */
+    background: radial-gradient(600px circle at var(--x, 0px) var(--y, 0px),
+            var(--spotlight-color),
+            transparent 40%);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    /* Hidden by default */
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+}
+
+.glass-card:hover::before {
+    opacity: 1;
+    /* Show spotlight on hover */
+}
+
+/* Inner highlight for volume */
+.glass-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(800px circle at var(--x, 0px) var(--y, 0px),
+            rgba(255, 255, 255, 0.05),
+            transparent 40%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.glass-card:hover::after {
+    opacity: 1;
+}
+
+.card-icon-box {
+    width: 48px;
+    height: 48px;
+    background: rgba(128, 128, 128, 0.1);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    will-change: transform;
-    text-decoration: none;
-    touch-action: none;
-    /* Prevent scrolling on mobile */
-    transform: translate(-50%, -50%);
-    /* Centered on coordinates */
+    margin-bottom: 24px;
+    color: var(--text-primary);
 }
 
-/* hover states for interactive objects */
-a.phys-obj:hover {
-    background: var(--text);
-    color: var(--bg);
-    border-color: var(--text);
+.glass-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 8px;
 }
 
-/* Shapes */
-.circle {
-    border-radius: 50%;
-    aspect-ratio: 1/1;
+.glass-card p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
 }
 
-.pill {
-    border-radius: 100px;
-    padding: 0 32px;
-    height: 64px;
+.card-meta {
+    margin-top: auto;
+    display: flex;
+    gap: 8px;
 }
 
-.square {
-    border-radius: 12px;
-    aspect-ratio: 1/1;
+.tag {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    background: rgba(128, 128, 128, 0.1);
+    border-radius: 99px;
+    color: var(--text-secondary);
+    font-weight: 500;
 }
 
-/* Specific Sizes */
-.logo-obj {
-    width: 120px;
-    height: 120px;
-    padding: 20px;
-}
-
-.logo-obj img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.disabled {
+    opacity: 0.6;
     pointer-events: none;
 }
 
-.project-obj {
-    height: 80px;
-    padding: 0 40px;
-    font-weight: 600;
-    font-size: 1.2rem;
-    gap: 12px;
-}
-
-.contact-obj {
-    height: 60px;
-    font-size: 1rem;
-    font-weight: 500;
-    gap: 10px;
-}
-
-.small {
-    width: 60px;
-    height: 60px;
-    font-weight: 700;
+/* Footer */
+.footer {
+    margin-top: auto;
+    padding: 40px 0;
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-tertiary);
     font-size: 0.9rem;
-    border-width: 1px;
 }
 
-.deco-3 {
-    width: 80px;
-    height: 80px;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
+.footer-links {
+    display: flex;
+    gap: 20px;
 }
 
-/* Mobile Adjustments */
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--text-primary);
+}
+
 @media (max-width: 600px) {
-    .bg-title {
-        font-size: 15vw;
+    .hero-title {
+        font-size: 3rem;
     }
 
-    .phys-obj {
-        transform: translate(-50%, -50%) scale(0.9);
+    .cards-grid {
+        grid-template-columns: 1fr;
     }
 }

@@ -3,52 +3,109 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>软云网络 | Creative Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>软云网络 | Soft Cloud</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/png" href="./ruanyun.png">
     <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
-    <!-- The Physics World Container -->
-    <div id="physics-world">
+    <!-- The Living Mesh Gradient Background -->
+    <div class="mesh-background">
+        <div class="mesh-orb orb-1"></div>
+        <div class="mesh-orb orb-2"></div>
+        <div class="mesh-orb orb-3"></div>
+        <div class="mesh-overlay"></div>
+    </div>
 
-        <!-- Background Tip -->
-        <div class="background-hint">
-            <h1 class="bg-title">SOFT CLOUD</h1>
-            <p>Drag, Throw, Explore.</p>
-        </div>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="glass-nav">
+            <div class="nav-content">
+                <div class="lens-logo-wrapper">
+                    <img src="./ruanyun.png" alt="Logo" class="nav-logo" />
+                    <div class="lens-flare"></div>
+                </div>
+                <span class="brand-name">软云网络</span>
+            </div>
+        </nav>
 
-        <!-- 1. The Core Logo (Physics Object) -->
-        <div class="phys-obj circle logo-obj" data-restitution="0.8" data-friction="0.02">
-            <img src="./ruanyun.png" alt="Soft Cloud Logo" />
-        </div>
+        <main>
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <h1 class="hero-title">
+                    <span class="hero-line">设计</span>
+                    <span class="hero-line gradient-text">空间计算未来</span>
+                </h1>
+                <p class="hero-subtitle">
+                    构建具有深度与光影的沉浸式数字体验。
+                </p>
 
-        <!-- 2. Project Card: AI Todo -->
-        <a href="https://aitodo.zoci.pro/" target="_blank" class="phys-obj pill project-obj" data-restitution="0.6">
-            <span class="icon">⚡</span>
-            <span class="text">AI 事项 / Todo</span>
-            <span class="arrow">↗</span>
-        </a>
+                <div class="hero-actions">
+                    <a href="https://aitodo.zoci.pro/" target="_blank" class="glass-btn primary">
+                        <span>体验 AI 事项</span>
+                        <div class="btn-shine"></div>
+                    </a>
+                    <a href="mailto:contact@ruanyun.com" class="glass-btn secondary">联系我们</a>
+                </div>
+            </section>
 
-        <!-- 3. Contact Pill -->
-        <a href="mailto:contact@ruanyun.com" class="phys-obj pill contact-obj" data-restitution="0.7">
-            <span class="icon">✉</span>
-            <span class="text">Email Us</span>
-        </a>
+            <!-- Projects Grid -->
+            <section class="grid-section">
+                <div class="grid-header">
+                    <h2>精选项目</h2>
+                </div>
 
-        <!-- 4. Decorative / Info Objects -->
-        <div class="phys-obj circle small deco-1" data-restitution="0.9">AI</div>
-        <div class="phys-obj circle small deco-2" data-restitution="0.9">VR</div>
-        <div class="phys-obj square deco-3" data-restitution="0.5">
-            <span class="code">SYS.26</span>
-        </div>
+                <div class="cards-grid">
+                    <!-- Project 1: AI Todo -->
+                    <a href="https://aitodo.zoci.pro/" target="_blank" class="glass-card spotlight-card">
+                        <div class="card-content">
+                            <div class="card-icon-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="card-icon">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <h3>AI 事项 / Todo</h3>
+                            <p>基于自然语言的下一代任务管理工具。</p>
+                            <div class="card-meta">
+                                <span class="tag">AI 原生</span>
+                                <span class="tag">生产力</span>
+                            </div>
+                        </div>
+                    </a>
 
+                    <!-- Project 2: Placeholder -->
+                    <div class="glass-card spotlight-card disabled">
+                        <div class="card-content">
+                            <div class="card-icon-box">
+                                <span class="dots">•••</span>
+                            </div>
+                            <h3>敬请期待</h3>
+                            <p>探索空间交互的无限可能。</p>
+                            <div class="card-meta">
+                                <span class="tag">研发中</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="#">X (Twitter)</a>
+                <a href="#">GitHub</a>
+                <a href="mailto:contact@ruanyun.com">邮件联系</a>
+            </div>
+            <div class="copyright">© 2026 软云网络</div>
+        </footer>
     </div>
 
     <script type="module" src="./main.js"></script>
