@@ -1,61 +1,47 @@
-// Custom Cursor Logic
-const cursorDot = document.querySelector('.cursor-dot');
-const cursorOutline = document.querySelector('.cursor-outline');
+// Animations and interactions
+// Apple-style is subtle, so we don't want heavy JS animations.
+// Mostly relying on CSS transitions.
 
-// Only active on desktop (if cursor elements exist)
-if (cursorDot && cursorOutline && window.matchMedia("(min-width: 769px)").matches) {
-    window.addEventListener('mousemove', function (e) {
-        const posX = e.clientX;
-        const posY = e.clientY;
+console.log('Soft Cloud Network - Redesigned');
 
-        // Dot follows immediately
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-
-        // Outline follows with slight delay
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
-    });
-}
-
-// Simple reveal on scroll
+// Simple intersection observer for a smooth fade-up on load
 const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.15
+    threshold: 0.1
 };
 
-const observer = new IntersectionObserver((entries, observer) => {
+const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('visible');
             observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-const projectCards = document.querySelectorAll('.project-card');
-projectCards.forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(40px)';
-    card.style.transition = `all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) ${index * 0.15}s`; // Smooth ease
-    observer.observe(card);
-});
+document.querySelectorAll('.bento-tile').forEach((tile, index) => {
+    // Add base style for animation
+    tile.style.opacity = '0';
+    tile.style.transform = 'translateY(20px)';
+    tile.style.transition = `opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) ${index * 0.05}s`; // Staggered
 
-// Tilt effect / Mouse spotlight logic
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        // Set CSS variables for spotlight position
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
+    // Clean up styles after animation for hover effects to work cleanly without conflict
+    tile.addEventListener('transitionend', (e) => {
+        if (e.propertyName === 'transform' && tile.style.opacity === '1') {
+            tile.style.transition = ''; // Remove inline transition to let CSS take over for hovers
+            tile.style.transform = '';
+            tile.style.opacity = '';
+        }
     });
+
+    observer.observe(tile);
 });
 
-console.log('Soft Cloud Network - Experience Initialized');
+// Trigger the animation
+setTimeout(() => {
+    document.querySelectorAll('.bento-tile').forEach(tile => {
+        tile.style.opacity = '1';
+        tile.style.transform = 'translateY(0)';
+    });
+}, 100);

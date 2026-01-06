@@ -5,79 +5,95 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>软云网络 | Soft Cloud Network</title>
+    <!-- SF Pro derived font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./ruanyun.png">
     <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
-    <div id="background-canvas"></div>
-    <div class="noise-overlay"></div>
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-
-    <div id="app">
-        <header class="glass-header">
-            <nav>
-                <div class="logo">Soft Cloud</div>
-                <div class="links">
-                    <a href="#hero" class="active">首页</a>
-                    <a href="#projects">项目</a>
-                </div>
+    <div class="page-container">
+        <header class="header">
+            <div class="logo-text">Soft Cloud</div>
+            <nav class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
             </nav>
         </header>
 
-        <main>
-            <section id="hero">
-                <div class="hero-content">
-                    <div class="logo-wrapper">
-                        <img src="./ruanyun.png" alt="软云网络 Logo" class="main-logo" />
-                        <div class="logo-glow"></div>
+        <main class="bento-grid">
+            <!-- Hero Tile (Large) -->
+            <article class="bento-tile hero-tile">
+                <div class="tile-content">
+                    <div class="logo-container">
+                        <img src="./ruanyun.png" alt="Logo" class="hero-logo" />
                     </div>
-                    <h1 class="hero-title">软云网络</h1>
-                    <p class="hero-subtitle">Exploring the Future of Digital & AI</p>
-                    <div class="scroll-indicator">
-                        <span></span>
+                    <h1>软云网络</h1>
+                    <p class="subtitle">Designing the Future.</p>
+                </div>
+            </article>
+
+            <!-- Project 1: AI Todo (Large/Wide) -->
+            <a href="https://aitodu.zoci.pro" target="_blank" class="bento-tile project-tile ai-todo">
+                <div class="tile-content">
+                    <div class="project-info">
+                        <span class="tag">Flagship</span>
+                        <h2>AI 事项</h2>
+                        <p>Reimagining productivity with Intelligence.</p>
+                    </div>
+                    <div class="project-visual">
+                        <div class="visual-mockup"></div>
+                    </div>
+                    <div class="arrow-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
                     </div>
                 </div>
-            </section>
+            </a>
 
-            <section id="projects">
-                <div class="section-header">
-                    <h2>精选项目</h2>
-                    <div class="line"></div>
+            <!-- Status/About Tile (Square) -->
+            <article class="bento-tile status-tile">
+                <div class="tile-content">
+                    <h3>Status</h3>
+                    <div class="status-indicator">
+                        <span class="dot"></span>
+                        <span>Available for work</span>
+                    </div>
                 </div>
+            </article>
 
-                <div class="project-grid">
-                    <a href="https://aitodo.zoci.pro" target="_blank" class="project-card glass-card">
-                        <div class="card-bg"></div>
-                        <div class="card-content">
-                            <div class="card-icon">AI</div>
-                            <h3>AI 事项</h3>
-                            <p>智能待办事项管理，重塑你的效率体验。</p>
-                            <span class="link-arrow">View Project <svg width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg></span>
-                        </div>
-                    </a>
-
-                    <a href="#" class="project-card glass-card">
-                        <div class="card-bg"></div>
-                        <div class="card-content">
-                            <div class="card-icon">DEV</div>
-                            <h3>更多项目</h3>
-                            <p>敬请期待更多精彩作品...</p>
-                            <span class="link-arrow">Soon...</span>
-                        </div>
-                    </a>
+            <!-- Social/Contact Tile (Square) -->
+            <a href="#" class="bento-tile social-tile">
+                <div class="tile-content">
+                    <h3>Contact</h3>
+                    <div class="icon-group">
+                        <!-- Simple mail icon -->
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
                 </div>
-            </section>
+            </a>
+
+            <!-- Coming Soon Tile (Wide) -->
+            <article class="bento-tile coming-soon-tile">
+                <div class="tile-content">
+                    <h3>More to come</h3>
+                    <p>We are constantly building.</p>
+                </div>
+            </article>
         </main>
 
-        <footer>
-            <p>&copy; 2026 软云网络. Created with Passion.</p>
+        <footer class="footer">
+            <p>&copy; 2026 软云网络. Designed in California Style.</p>
         </footer>
     </div>
     <script type="module" src="./main.js"></script>
