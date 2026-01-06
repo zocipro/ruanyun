@@ -3,97 +3,54 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>软云网络 | Soft Cloud</title>
-    <!-- SF Pro derived font and Inter for numbers/English -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>软云网络 | Creative Lab</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <link rel="icon" type="image/png" href="./ruanyun.png">
     <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
-    <!-- Noise overlay handled in CSS on body/container -->
-    <div class="page-container">
-        <header class="header">
-            <div class="logo-text">Soft Cloud</div>
-            <nav class="nav-links">
-                <a href="#work">作品</a>
-                <a href="#about">关于</a>
-            </nav>
-        </header>
+    <!-- The Physics World Container -->
+    <div id="physics-world">
 
-        <main class="bento-grid">
-            <!-- Hero Tile (Large) -->
-            <article class="bento-tile hero-tile">
-                <div class="tile-content">
-                    <div class="logo-container">
-                        <img src="./ruanyun.png" alt="Logo" class="hero-logo" />
-                    </div>
-                    <h1>软云网络</h1>
-                    <p class="subtitle">设计 · 探索 · 未来</p>
-                </div>
-            </article>
+        <!-- Background Tip -->
+        <div class="background-hint">
+            <h1 class="bg-title">SOFT CLOUD</h1>
+            <p>Drag, Throw, Explore.</p>
+        </div>
 
-            <!-- Project 1: AI Todo (Large/Wide) -->
-            <a href="https://aitodo.zoci.pro/" target="_blank" class="bento-tile project-tile ai-todo">
-                <div class="tile-content">
-                    <div class="project-info">
-                        <span class="tag">核心产品</span>
-                        <h2>AI 事项</h2>
-                        <p>用智能重塑效率体验。</p>
-                    </div>
-                    <div class="arrow-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
-                    </div>
-                </div>
-            </a>
+        <!-- 1. The Core Logo (Physics Object) -->
+        <div class="phys-obj circle logo-obj" data-restitution="0.8" data-friction="0.02">
+            <img src="./ruanyun.png" alt="Soft Cloud Logo" />
+        </div>
 
-            <!-- Status/About Tile (Square) -->
-            <article class="bento-tile status-tile">
-                <div class="tile-content">
-                    <h3>当前状态</h3>
-                    <div class="status-indicator">
-                        <span class="dot"></span>
-                        <span>接受项目委托</span>
-                    </div>
-                </div>
-            </article>
+        <!-- 2. Project Card: AI Todo -->
+        <a href="https://aitodo.zoci.pro/" target="_blank" class="phys-obj pill project-obj" data-restitution="0.6">
+            <span class="icon">⚡</span>
+            <span class="text">AI 事项 / Todo</span>
+            <span class="arrow">↗</span>
+        </a>
 
-            <!-- Social/Contact Tile (Square) -->
-            <a href="#" class="bento-tile social-tile">
-                <div class="tile-content">
-                    <h3>联系方式</h3>
-                    <div class="icon-group">
-                        <!-- Simple mail icon -->
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                            </path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </div>
-                </div>
-            </a>
+        <!-- 3. Contact Pill -->
+        <a href="mailto:contact@ruanyun.com" class="phys-obj pill contact-obj" data-restitution="0.7">
+            <span class="icon">✉</span>
+            <span class="text">Email Us</span>
+        </a>
 
-            <!-- Coming Soon Tile (Wide) -->
-            <article class="bento-tile coming-soon-tile">
-                <div class="tile-content">
-                    <h3>更多精彩</h3>
-                    <p>正在持续构建中...</p>
-                </div>
-            </article>
-        </main>
+        <!-- 4. Decorative / Info Objects -->
+        <div class="phys-obj circle small deco-1" data-restitution="0.9">AI</div>
+        <div class="phys-obj circle small deco-2" data-restitution="0.9">VR</div>
+        <div class="phys-obj square deco-3" data-restitution="0.5">
+            <span class="code">SYS.26</span>
+        </div>
 
-        <footer class="footer">
-            <p>&copy; 2026 软云网络. 用心创造.</p>
-        </footer>
     </div>
+
     <script type="module" src="./main.js"></script>
 </body>
 
