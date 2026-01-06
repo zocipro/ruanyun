@@ -6,7 +6,7 @@
     --glass-border: rgba(255, 255, 255, 0.6);
     --glass-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.05);
     --glass-blur: 24px;
-    --bg-solid: #f4f1ff;
+    --bg-solid: #eef2ff;
 
     --text-primary: #000000;
     --text-secondary: rgba(60, 60, 67, 0.8);
@@ -15,19 +15,22 @@
     --spotlight-color: rgba(255, 255, 255, 0.9);
 
     /* Mesh Gradient Colors (Day) */
-    --mesh-1: #ff8bd4;
-    --mesh-2: #b693ff;
-    --mesh-3: #7fb6ff;
-    --mesh-4: #6ee6ff;
+    --mesh-1: #ff79c8;
+    --mesh-2: #9b8bff;
+    --mesh-3: #65c8ff;
+    --mesh-4: #67f2e4;
 
     --mesh-canvas:
-        radial-gradient(60% 60% at 15% 10%, rgba(255, 139, 212, 0.45), transparent 70%),
-        radial-gradient(70% 60% at 85% 15%, rgba(182, 147, 255, 0.4), transparent 70%),
-        radial-gradient(75% 70% at 50% 85%, rgba(127, 182, 255, 0.35), transparent 72%),
-        radial-gradient(55% 55% at 88% 80%, rgba(110, 230, 255, 0.25), transparent 70%);
+        radial-gradient(65% 65% at 12% 8%, rgba(255, 121, 200, 0.5), transparent 70%),
+        radial-gradient(70% 60% at 88% 12%, rgba(155, 139, 255, 0.45), transparent 70%),
+        radial-gradient(75% 70% at 55% 88%, rgba(101, 200, 255, 0.35), transparent 72%),
+        radial-gradient(60% 60% at 90% 78%, rgba(103, 242, 228, 0.28), transparent 70%);
 
-    --mesh-overlay-top: rgba(255, 255, 255, 0.12);
-    --mesh-overlay-bottom: rgba(255, 255, 255, 0.08);
+    --mesh-overlay-top: rgba(255, 255, 255, 0.16);
+    --mesh-overlay-bottom: rgba(232, 240, 255, 0.12);
+
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
 
     --orb-opacity: 0.75;
 
@@ -79,7 +82,6 @@
 html {
     background-color: var(--bg-solid);
     background-image: var(--mesh-canvas);
-    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 140% 140%;
     background-position: 20% 20%;
@@ -93,15 +95,22 @@ body {
     min-height: 100dvh;
     /* Mobile viewport fix */
     overflow-x: hidden;
-    background-color: transparent;
-    padding-bottom: env(safe-area-inset-bottom);
+    background-color: var(--bg-solid);
+    background-image: var(--mesh-canvas);
+    background-repeat: no-repeat;
+    background-size: 140% 140%;
+    background-position: 20% 20%;
+    padding-bottom: var(--safe-bottom);
     /* Safe area for home indicator */
 }
 
 /* --- Living Mesh Background --- */
 .mesh-background {
     position: fixed;
-    inset: 0;
+    left: 0;
+    right: 0;
+    top: calc(0px - var(--safe-top));
+    bottom: calc(0px - var(--safe-bottom));
     z-index: 0;
     overflow: hidden;
     isolation: isolate;
@@ -248,7 +257,7 @@ body {
 /* --- Navigation (Glass Bar) --- */
 .glass-nav {
     position: sticky;
-    top: 24px;
+    top: calc(24px + var(--safe-top));
     z-index: 100;
     display: flex;
     justify-content: center;
