@@ -63,8 +63,8 @@ body {
     min-height: 100dvh;
     /* Mobile viewport fix */
     overflow-x: hidden;
-    background: var(--bg-solid);
-    /* Fallback */
+    background: transparent;
+    /* Allow mesh to show */
     padding-bottom: env(safe-area-inset-bottom);
     /* Safe area for home indicator */
 }
@@ -73,7 +73,8 @@ body {
 .mesh-background {
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: 0;
+    /* Base layer */
     background: var(--bg-void, #f2f2f7);
     /* Default solid fallback */
     overflow: hidden;
@@ -155,6 +156,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
 /* --- Navigation (Glass Bar) --- */
