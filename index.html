@@ -5,12 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#edf1fb" data-light="#edf1fb" data-dark="#0b0f1a">
+    <meta name="theme-color" content="#e7ebff" data-light="#e7ebff" data-dark="#0b0f1a">
     <script>
         (() => {
             const themeMeta = document.querySelector('meta[name="theme-color"]');
             if (!themeMeta) return;
-            const light = themeMeta.getAttribute('data-light') || '#edf1fb';
+            const light = themeMeta.getAttribute('data-light') || '#e7ebff';
             const dark = themeMeta.getAttribute('data-dark') || '#0b0f1a';
             const setTheme = (isDark) => {
                 themeMeta.setAttribute('content', isDark ? dark : light);
