@@ -4,8 +4,26 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0b0f1a" media="(prefers-color-scheme: dark)">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#0b0f1a" data-light="#f2f2f7" data-dark="#0b0f1a">
+    <script>
+        (() => {
+            const themeMeta = document.querySelector('meta[name="theme-color"]');
+            if (!themeMeta) return;
+            const light = themeMeta.getAttribute('data-light') || '#f2f2f7';
+            const dark = themeMeta.getAttribute('data-dark') || '#0b0f1a';
+            const setTheme = (isDark) => {
+                themeMeta.setAttribute('content', isDark ? dark : light);
+            };
+            const media = window.matchMedia('(prefers-color-scheme: dark)');
+            setTheme(media.matches);
+            if (media.addEventListener) {
+                media.addEventListener('change', (event) => setTheme(event.matches));
+            } else if (media.addListener) {
+                media.addListener((event) => setTheme(event.matches));
+            }
+        })();
+    </script>
     <title>软云网络 | Soft Cloud</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

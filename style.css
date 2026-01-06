@@ -6,7 +6,7 @@
     --glass-border: rgba(255, 255, 255, 0.6);
     --glass-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.05);
     --glass-blur: 24px;
-    --bg-solid: #f2f2f7;
+    --bg-solid: #f7f5ff;
 
     --text-primary: #000000;
     --text-secondary: rgba(60, 60, 67, 0.8);
@@ -15,9 +15,9 @@
     --spotlight-color: rgba(255, 255, 255, 0.9);
 
     /* Mesh Gradient Colors (Day) */
-    --mesh-1: #FF9A9E;
-    --mesh-2: #FECFEF;
-    --mesh-3: #A18CD1;
+    --mesh-1: #ff8ec7;
+    --mesh-2: #bda6ff;
+    --mesh-3: #79b7ff;
 
     --orb-opacity: 0.8;
 
