@@ -6,7 +6,7 @@
     --glass-border: rgba(255, 255, 255, 0.6);
     --glass-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.05);
     --glass-blur: 24px;
-    --bg-solid: #eef2ff;
+    --bg-solid: #edf1fb;
 
     --text-primary: #000000;
     --text-secondary: rgba(60, 60, 67, 0.8);
@@ -15,19 +15,21 @@
     --spotlight-color: rgba(255, 255, 255, 0.9);
 
     /* Mesh Gradient Colors (Day) */
-    --mesh-1: #ff79c8;
-    --mesh-2: #9b8bff;
-    --mesh-3: #65c8ff;
-    --mesh-4: #67f2e4;
+    --mesh-1: #ff86d8;
+    --mesh-2: #9a8cff;
+    --mesh-3: #63d2ff;
+    --mesh-4: #8fffe6;
 
     --mesh-canvas:
-        radial-gradient(65% 65% at 12% 8%, rgba(255, 121, 200, 0.5), transparent 70%),
-        radial-gradient(70% 60% at 88% 12%, rgba(155, 139, 255, 0.45), transparent 70%),
-        radial-gradient(75% 70% at 55% 88%, rgba(101, 200, 255, 0.35), transparent 72%),
-        radial-gradient(60% 60% at 90% 78%, rgba(103, 242, 228, 0.28), transparent 70%);
+        linear-gradient(180deg, rgba(237, 241, 251, 0.98) 0%, rgba(237, 241, 251, 0) 28%),
+        linear-gradient(0deg, rgba(237, 241, 251, 0.98) 0%, rgba(237, 241, 251, 0) 28%),
+        radial-gradient(65% 65% at 12% 6%, rgba(255, 134, 216, 0.48), transparent 70%),
+        radial-gradient(70% 60% at 88% 12%, rgba(154, 140, 255, 0.42), transparent 72%),
+        radial-gradient(80% 75% at 55% 90%, rgba(99, 210, 255, 0.32), transparent 74%),
+        radial-gradient(60% 60% at 90% 80%, rgba(143, 255, 230, 0.26), transparent 72%);
 
-    --mesh-overlay-top: rgba(255, 255, 255, 0.16);
-    --mesh-overlay-bottom: rgba(232, 240, 255, 0.12);
+    --mesh-overlay-top: rgba(255, 255, 255, 0.18);
+    --mesh-overlay-bottom: rgba(228, 236, 255, 0.14);
 
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -61,13 +63,15 @@
         --mesh-4: #0f4b5a;
 
         --mesh-canvas:
-            radial-gradient(60% 60% at 15% 10%, rgba(70, 103, 255, 0.18), transparent 70%),
-            radial-gradient(70% 60% at 85% 15%, rgba(119, 60, 170, 0.2), transparent 70%),
-            radial-gradient(75% 70% at 50% 85%, rgba(20, 160, 200, 0.16), transparent 72%),
-            radial-gradient(55% 55% at 88% 80%, rgba(16, 120, 140, 0.14), transparent 70%);
+            linear-gradient(180deg, rgba(11, 15, 26, 0.98) 0%, rgba(11, 15, 26, 0) 30%),
+            linear-gradient(0deg, rgba(11, 15, 26, 0.98) 0%, rgba(11, 15, 26, 0) 30%),
+            radial-gradient(60% 60% at 15% 10%, rgba(84, 110, 255, 0.2), transparent 70%),
+            radial-gradient(70% 60% at 85% 15%, rgba(132, 70, 190, 0.22), transparent 72%),
+            radial-gradient(75% 70% at 50% 85%, rgba(30, 170, 210, 0.16), transparent 74%),
+            radial-gradient(55% 55% at 88% 80%, rgba(20, 130, 150, 0.16), transparent 70%);
 
-        --mesh-overlay-top: rgba(255, 255, 255, 0.06);
-        --mesh-overlay-bottom: rgba(255, 255, 255, 0.04);
+        --mesh-overlay-top: rgba(255, 255, 255, 0.05);
+        --mesh-overlay-bottom: rgba(255, 255, 255, 0.035);
 
         --orb-opacity: 0.65;
     }
