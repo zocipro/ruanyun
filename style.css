@@ -6,7 +6,7 @@
     --glass-border: rgba(255, 255, 255, 0.6);
     --glass-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.05);
     --glass-blur: 24px;
-    --bg-solid: #f7f5ff;
+    --bg-solid: #f4f1ff;
 
     --text-primary: #000000;
     --text-secondary: rgba(60, 60, 67, 0.8);
@@ -15,11 +15,21 @@
     --spotlight-color: rgba(255, 255, 255, 0.9);
 
     /* Mesh Gradient Colors (Day) */
-    --mesh-1: #ff8ec7;
-    --mesh-2: #bda6ff;
-    --mesh-3: #79b7ff;
+    --mesh-1: #ff8bd4;
+    --mesh-2: #b693ff;
+    --mesh-3: #7fb6ff;
+    --mesh-4: #6ee6ff;
 
-    --orb-opacity: 0.8;
+    --mesh-canvas:
+        radial-gradient(60% 60% at 15% 10%, rgba(255, 139, 212, 0.45), transparent 70%),
+        radial-gradient(70% 60% at 85% 15%, rgba(182, 147, 255, 0.4), transparent 70%),
+        radial-gradient(75% 70% at 50% 85%, rgba(127, 182, 255, 0.35), transparent 72%),
+        radial-gradient(55% 55% at 88% 80%, rgba(110, 230, 255, 0.25), transparent 70%);
+
+    --mesh-overlay-top: rgba(255, 255, 255, 0.12);
+    --mesh-overlay-bottom: rgba(255, 255, 255, 0.08);
+
+    --orb-opacity: 0.75;
 
     --font-stack: 'SF Pro Display', 'Inter', -apple-system, sans-serif;
     --radius-xl: 32px;
@@ -42,9 +52,19 @@
         --spotlight-color: rgba(255, 255, 255, 0.1);
 
         /* Deep Dark Mesh (Night) */
-        --mesh-1: #23387a;
-        --mesh-2: #4b1f63;
-        --mesh-3: #0f5670;
+        --mesh-1: #2a3b88;
+        --mesh-2: #4b1f6b;
+        --mesh-3: #0f5b7a;
+        --mesh-4: #0f4b5a;
+
+        --mesh-canvas:
+            radial-gradient(60% 60% at 15% 10%, rgba(70, 103, 255, 0.18), transparent 70%),
+            radial-gradient(70% 60% at 85% 15%, rgba(119, 60, 170, 0.2), transparent 70%),
+            radial-gradient(75% 70% at 50% 85%, rgba(20, 160, 200, 0.16), transparent 72%),
+            radial-gradient(55% 55% at 88% 80%, rgba(16, 120, 140, 0.14), transparent 70%);
+
+        --mesh-overlay-top: rgba(255, 255, 255, 0.06);
+        --mesh-overlay-bottom: rgba(255, 255, 255, 0.04);
 
         --orb-opacity: 0.65;
     }
@@ -58,6 +78,11 @@
 
 html {
     background-color: var(--bg-solid);
+    background-image: var(--mesh-canvas);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 140% 140%;
+    background-position: 20% 20%;
     height: 100%;
 }
 
@@ -68,7 +93,7 @@ body {
     min-height: 100dvh;
     /* Mobile viewport fix */
     overflow-x: hidden;
-    background-color: var(--bg-solid);
+    background-color: transparent;
     padding-bottom: env(safe-area-inset-bottom);
     /* Safe area for home indicator */
 }
@@ -78,21 +103,34 @@ body {
     position: fixed;
     inset: 0;
     z-index: 0;
-    /* Base layer */
-    background: var(--bg-solid);
-    /* Default solid fallback */
     overflow: hidden;
+    isolation: isolate;
+    pointer-events: none;
+}
+
+.mesh-background::before {
+    content: '';
+    position: absolute;
+    inset: -25%;
+    background-image: var(--mesh-canvas);
+    background-size: 140% 140%;
+    background-position: 20% 20%;
+    filter: blur(40px);
+    opacity: 0.9;
+    animation: meshDrift 28s ease-in-out infinite alternate;
+    z-index: 0;
 }
 
 /* The Orbs */
 .mesh-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px);
+    filter: blur(90px);
     /* The Diffused Light Look */
     opacity: var(--orb-opacity);
     will-change: transform;
     animation: floatOrb 20s infinite ease-in-out alternate;
+    z-index: 1;
 }
 
 .orb-1 {
@@ -156,13 +194,42 @@ body {
     }
 }
 
+@keyframes meshDrift {
+    0% {
+        transform: translate3d(-2%, -1%, 0) scale(1);
+    }
+
+    100% {
+        transform: translate3d(2%, 2%, 0) scale(1.05);
+    }
+}
+
+@keyframes overlayBreathe {
+    0% {
+        opacity: 0.45;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
 .mesh-overlay {
     position: absolute;
     inset: 0;
     backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
     /* Smooth out everything into gradients */
-    background: rgba(255, 255, 255, 0.05);
-    /* Slight tint */
+    background:
+        radial-gradient(120% 120% at 50% 0%, var(--mesh-overlay-top), transparent 60%),
+        radial-gradient(120% 120% at 50% 100%, var(--mesh-overlay-bottom), transparent 55%);
+    opacity: 0.6;
+    animation: overlayBreathe 18s ease-in-out infinite;
+    z-index: 2;
 }
 
 
